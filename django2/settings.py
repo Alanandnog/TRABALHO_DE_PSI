@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'core',
-    'bootstarp4',
+    'bootstrap4',
     'stdimage',
 ]
 
@@ -84,8 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django2',
-        'USER': 'alan',
-        'PASSWORD': '12345',
+        'USER': 'Alan',
+        'PASSWORD': 'sua_senha',
         'HOST': 'localhost',
         'PORT':'3306',
     }

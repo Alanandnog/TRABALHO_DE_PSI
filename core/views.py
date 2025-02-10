@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.contrib import messages
 
-
+from django.shortcuts import render, redirect
+from .models import Comentario
+from .forms import ComentarioForm
 
 from .forms import ContatoForm, ProdutoModelForm
 from .models import Produto
@@ -46,3 +48,20 @@ def produto(request):
     }
     return render(request,'produto.html', context)
 
+
+def comentarios_view(request):
+    comentarios = Comentario.objects.all().order_by('-data_criacao')
+
+    if request.method == "POST":
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('comentarios')  # Redireciona para atualizar a página
+    else:
+        form = ComentarioForm()
+
+    return render(request, 'comentarios.html', {'form': form, 'comentarios': comentarios})
+
+def comentarios_produto(request, produto_id):
+    # Buscar o produto e seus comentários
+    return render(request, 'comentarios.html', {'produto_id': produto_id})

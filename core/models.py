@@ -29,4 +29,10 @@ def produto_pre_save(signal, instance, sender, **kwargs):
 
 signals.pre_save.connect(produto_pre_save, sender=Produto)
 
+class Comentario(models.Model):
+    nome = models.CharField(max_length=100)
+    comentario = models.TextField()
+    data_criacao = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.nome} - {self.data_criacao.strftime('%d/%m/%Y')}"
